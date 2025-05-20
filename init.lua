@@ -173,8 +173,69 @@ vim.o.confirm = true
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- My previous options TODO: organize
+vim.opt.nu = true
+vim.opt.relativenumber = true
+
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
+vim.opt.smartindent = true
+
+vim.opt.wrap = false
+
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.opt.undofile = true
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.termguicolors = true
+
+vim.opt.scrolloff = 8
+vim.opt.signcolumn = 'yes'
+vim.opt.isfname:append '@-@'
+
+vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = { 81, 101 }
+
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Remap: Open diagnostic [Q]uickfix list' })
+-- TODO: check what alternative there is to the deprecated goto_prev
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Remap: Move to previous diagnostics' })
+-- TODO: check what alternative there is to the deprecated goto_next
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Remap: Move to next diagnostics' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Remap: Open diagnostics error message' })
+
+-- Other keymaps TODO: organize
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = 'Remap: open file explorer' })
+
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Remap: Visual mode: move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Remap: Visual mode: move line up' })
+
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'Remap: Remove new line after the end of the current line' })
+vim.keymap.set('n', '<C-d>', 'C-d>zz', { desc = 'Remap: TODO' })
+vim.keymap.set('n', '<C-u>', 'C-u>zz', { desc = 'Remap: TODO' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Remap: TODO' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Remap: TODO' })
+
+vim.keymap.set('x', '<leader>p', '"_dP', { desc = 'Remap: TODO' })
+
+vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Remap: TODO' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Remap: TODO' })
+vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'Remap: TODO' })
+
+vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Remap: replace word' })
+
+vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', {
+  desc = 'Remap: make file executable',
+  silent = true,
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
